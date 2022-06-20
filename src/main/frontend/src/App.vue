@@ -29,6 +29,15 @@
             };
         },
         methods: {
+            register(user) {
+            this.$http.post('participants', user)
+                .then(response => {
+                    this.success('Konto założone, teraz możesz się zalogować.');
+                    this.registering = false;
+                })
+                .catch(response => {
+                    this.failure('Wystąpił następujący błąd: ' + response.status));
+                }
             login(user) {
                 this.authenticatedUsername = user.login;
             },
